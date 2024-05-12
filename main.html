@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>body_measurement</title>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    #game-container {
+        position: center;
+    }
+    #target {
+        position: absolute;
+        top: calc(10% - 50px);
+        left: calc(10% - 50px);
+        width: 500px;
+        height: 1000px;
+        background: url('./body.jpeg') no-repeat center center;
+        background-size: contain;
+        background-position: center;
+        cursor: pointer;
+    }
+    .message {
+        position: absolute;
+        display: none;
+        padding: 20px;
+        background-color: #ffca99;
+        border: 2px solid #fe7250;
+        border-radius: 10px;
+        text-align: center;
+        color: #fe7250;
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: bold;
+    }
+    #message-1 {
+        top: 20%;
+        left: 50%;
+        transform: translateX(-20%);
+    }
+    #message-2 {
+        top: 40%;
+        left: 50%;
+        transform: translateX(-20%);
+    }
+    #message-3 {
+        top: 60%;
+        left: 50%;
+        transform: translateX(-20%);
+    }
+    #message-4 {
+        top: 80%;
+        left: 50%;
+        transform: translateX(-20%);
+    }
+    #message-5 {
+        top: 100%;
+        left: 50%;
+        transform: translateX(-20%);
+    }
+</style>
+</head>
+<body>
+<div id="game-container">
+    <div id="target"></div>
+    <div id="message-1" class="message"></div>
+    <div id="message-2" class="message"></div>
+    <div id="message-3" class="message"></div>
+    <div id="message-4" class="message"></div>
+    <div id="message-5" class="message"></div>
+</div>
+<audio id="audio-1" src="180.m4a"></audio>
+<audio id="audio-2" src="113help_me.mp3"></audio>
+<audio id="audio-3" src="32ten_finger.mp3"></audio>
+<audio id="audio-4" src="110bad_position.mp3"></audio>
+<audio id="audio-5" src="94.mp3"></audio>
+<audio id="background" autoplay loop>
+    <source src="dream.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+<script>
+    const target = document.getElementById('target');
+    const message1 = document.getElementById('message-1');
+    const message2 = document.getElementById('message-2');
+    const message3 = document.getElementById('message-3');
+    const message4 = document.getElementById('message-4');
+    const message5 = document.getElementById('message-5');
+    const audio1 = document.getElementById('audio-1');
+    const audio2 = document.getElementById('audio-2');
+    const audio3 = document.getElementById('audio-3');
+    const audio4 = document.getElementById('audio-4');
+    const audio5 = document.getElementById('audio-5');
+
+    window.onload = function(){
+            alert("帮他测量身体数据吧！")
+             setInterval("toggleSound()",1);
+        }
+    function toggleSound() {
+                var music = document.getElementById("background");//获取ID  
+                music.volume = 0.1;
+                if (music.paused) { //判读是否播放  
+                    music.paused=false;
+                    music.play(); //没有就播放 
+                }    
+        }
+    target.addEventListener('click', (event) => {
+        const targetRect = target.getBoundingClientRect();
+        const clickY = event.clientY - targetRect.top;
+
+        if (clickY < targetRect.height / 7) {
+            showMessage(message1, "身高 180.5cm, 体重 68.1kg");
+            playSound(audio1);
+        } else if (clickY < targetRect.height *  3 / 10) {
+            showMessage(message2, "胸围 100cm");
+            playSound(audio2);
+        } else if (clickY < targetRect.height * 2 / 5) {
+            showMessage(message3, "腰围 75cm 手长 24cm");
+            playSound(audio3);
+        } else if (clickY < targetRect.height * 3 / 5) {
+            showMessage(message4, "腿围 55cm");
+            playSound(audio4);
+        } else if (clickY > targetRect.height * 4 / 5) {
+            showMessage(message5, "脚长 26 cm");
+            playSound(audio5);
+        }
+    });
+
+    function showMessage(element, message) {
+        element.innerText = message;
+        element.style.display = 'block';
+        setTimeout(() => {
+            element.style.display = 'none';
+        }, 5000); // 2秒后隐藏消息
+    }
+
+    function playSound(audio) {
+        audio.currentTime = 0;
+        audio.play();
+    }
+</script>
+</body>
+</html>
