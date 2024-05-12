@@ -71,7 +71,7 @@
         position: absolute;
         display: none;
         padding: 20px;
-        background-color: #ffca99; 
+        background-color: rgba(255, 202, 153, 0.8); 
         border-radius: 10px;
         text-align: center;
         color: #fa834c;
@@ -192,18 +192,23 @@
         if (clickY < targetRect.height / 7) {
             showMessage(message1, "身高 180.5cm, 体重 68.1kg");
             playSound(audio1);
+            var task1 = true;
         } else if (clickY < targetRect.height *  3 / 10) {
             showMessage(message2, "胸围 100cm");
             playSound(audio2);
+            var task2 = true;
         } else if (clickY < targetRect.height * 2 / 5) {
             showMessage(message3, "腰围 75cm 手长 24cm");
             playSound(audio3);
+            var task3 = true;
         } else if (clickY < targetRect.height * 3 / 5) {
             showMessage(message4, "腿围 55cm");
             playSound(audio4);
+            var task4 = true;
         } else if (clickY > targetRect.height * 4 / 5) {
             showMessage(message5, "脚长 26 cm");
             playSound(audio5);
+            var task5 = true;
         }
     });
 
@@ -212,7 +217,7 @@
         element.style.display = 'block';
         setTimeout(() => {
             element.style.display = 'none';
-        }, 5000); // 2秒后隐藏消息
+        }, 3000); // 2秒后隐藏消息
     }
 
     function playSound(audio) {
