@@ -4,7 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>body_measurement</title>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <style>
+    .ui-dialog-titlebar {
+      background-color: #ffca99;
+      color: #fff;
+    }
+    .ui-dialog-content {
+      padding: 20px;
+    }
     body {
         display: flex;
         justify-content: center;
@@ -30,12 +40,11 @@
         position: absolute;
         display: none;
         padding: 20px;
-        background-color: #ffca99;
-        border: 2px solid #fe7250;
+        background-color:rgba(255, 202, 153, 0.8);
         border-radius: 10px;
         text-align: center;
         color: #fe7250;
-        font-family: 'Courier New', Courier, monospace;
+        font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
         font-weight: bold;
     }
     #message-1 {
@@ -83,6 +92,9 @@
     <source src="dream.mp3" type="audio/mp3">
     Your browser does not support the audio element.
   </audio>
+<div id="dialog" title="第一步：测量数据">
+    <p>帮他量体裁衣，测量身体数据吧！</p>
+</div>
 <script>
     const target = document.getElementById('target');
     const message1 = document.getElementById('message-1');
@@ -97,8 +109,11 @@
     const audio5 = document.getElementById('audio-5');
 
     window.onload = function(){
-            alert("帮他测量身体数据吧！")
-             setInterval("toggleSound()",1);
+            $("#dialog").dialog({
+            autoOpen: true, // 初始显示
+            modal: true, // 模态对话框
+            });
+            setInterval("toggleSound()",1);
         }
     function toggleSound() {
                 var music = document.getElementById("background");//获取ID  
