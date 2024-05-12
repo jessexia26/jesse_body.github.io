@@ -8,6 +8,26 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <style>
+    .custom-button {
+      background-color:  #ffca99;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: box-shadow 0.3s ease; /* 添加过渡效果 */
+      position: fixed; /* 固定定位 */
+      top: 20px; /* 距离顶部20px */
+      left: 20px; /* 距离右侧20px */
+    }
+    .custom-button:hover {
+      background-color:  #ffca99;
+      box-shadow: 0 0 10px 0  #ffca99(0, 123, 255, 0.5); /* 添加阴影效果 */
+    }
     .ui-dialog-titlebar {
       background-color: #ffca99;
       color: #fff;
@@ -93,8 +113,12 @@
     Your browser does not support the audio element.
   </audio>
 <div id="dialog" title="第一步：测量数据">
-    <p>帮他量体裁衣，测量身体数据吧！</p>
+    <p>帮他量体裁衣吧（＾ω＾）！</p>
 </div>
+<div id="reminder" title="第二步：是时候换衣服了">
+    <p>再不换衣服要迟到了(///▽///)！</p>
+</div>
+<button id="衣帽间" class="custom-button" style="display:none;"> 汤圆要换衣服了，大小姐回避ꈍ◡ꈍ</button>
 <script>
     const target = document.getElementById('target');
     const message1 = document.getElementById('message-1');
@@ -112,9 +136,35 @@
             $("#dialog").dialog({
             autoOpen: true, // 初始显示
             modal: true, // 模态对话框
+            buttons: {
+                "关闭": function() {
+                    $(this).dialog("close");
+                    $("#reminder").dialog("open")
+                }}            
             });
             setInterval("toggleSound()",1);
         }
+    $(document).ready(function() {
+        function openDialog() {
+        $("#reminder").dialog({
+                autoOpen: false,
+                modal: true,
+                buttons: {
+                "关闭": function() {
+                    $(this).dialog("close");
+                    $("#衣帽间").show()
+                }
+                }
+            });
+        // 30秒后再次打开对话框
+        setTimeout(openDialog, 30000);
+        }
+    // 初始打开对话框
+    openDialog();
+    });
+    $("#衣帽间").on("click", function() {
+      window.location.href = "https://baidu.com"; // 在这里填写你要跳转的网页地址
+    });
     function toggleSound() {
                 var music = document.getElementById("background");//获取ID  
                 music.volume = 0.1;
@@ -123,6 +173,7 @@
                     music.play(); //没有就播放 
                 }    
         }
+
     target.addEventListener('click', (event) => {
         const targetRect = target.getBoundingClientRect();
         const clickY = event.clientY - targetRect.top;
