@@ -17,12 +17,14 @@
       text-decoration: none;
       display: inline-block;
       font-size: 16px;
+      font-weight: bold;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
       border-radius: 5px;
       cursor: pointer;
       transition: box-shadow 0.3s ease; /* 添加过渡效果 */
-      position: fixed; /* 固定定位 */
-      top: 20px; /* 距离顶部20px */
-      left: 20px; /* 距离右侧20px */
+      position: fixed;
+      top: calc(5% - 5px);
+      left: calc(40% - 5px);
     }
     .custom-button:hover {
       background-color:  #ffca99;
@@ -31,9 +33,15 @@
     .ui-dialog-titlebar {
       background-color: #ffca99;
       color: #fff;
+      font-size: 20px;
+      font-weight: bold;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     }
     .ui-dialog-content {
       padding: 20px;
+      font-size: 16px;
+      font-weight: bold;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     }
     body {
         display: flex;
@@ -60,11 +68,11 @@
         position: absolute;
         display: none;
         padding: 20px;
-        background-color:rgba(255, 202, 153, 0.8);
+        background-color:rgba(255, 202, 153);
         border-radius: 10px;
         text-align: center;
-        color: #fe7250;
-        font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+        color: #fff;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
         font-weight: bold;
     }
     #message-1 {
