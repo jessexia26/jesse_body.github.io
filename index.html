@@ -8,31 +8,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <style>
-    .custom-button {
-      background-image: linear-gradient(to right, #ffca99, #f8abd3); 
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
-      text-align: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transform-style: preserve-3d;
-      transform: perspective(800px);
-      font-size: 16px;
-      font-weight: bold;
-      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-      border-radius: 20px; /* 设置按钮为圆形 */
-      cursor: pointer;
-      transition: box-shadow 0.3s ease; /* 添加过渡效果 */
-      position: fixed;
-      bottom: calc(2% - 5px);
-      left: calc(17% - 5px);
-    }
-    .custom-button:hover {
-      background-image: linear-gradient(to right, #fa834c, #fa834c);
-      box-shadow: 0 0 10px 0  #ca6638(0, 123, 255, 0.5); /* 添加阴影效果 */
-    }
     .ui-dialog-titlebar {
       background-image: linear-gradient(to left, #ffca99, #f8abd3); 
       color: #fff;
@@ -129,7 +104,6 @@
 <div id="reminder" title="第二步：是时候换衣服了">
     <p>再不换衣服要迟到了 (///▽///)！</p>
 </div>
-<button id="衣帽间" class="custom-button" style="display:none;">->衣帽间,别偷看ꈍ◡ꈍ</button>
 <script>
     const target = document.getElementById('target');
     const message1 = document.getElementById('message-1');
@@ -163,7 +137,6 @@
                 buttons: {
                 "关闭": function() {
                     $(this).dialog("close");
-                    $("#衣帽间").show()
                 }
                 }
             });
@@ -172,9 +145,6 @@
         }
     // 初始打开对话框
     openDialog();
-    });
-    $("#衣帽间").on("click", function() {
-      window.location.href = "https://jessexia-0526.wixstudio.io/jesse/wardrobe"; // 在这里填写你要跳转的网页地址
     });
     function toggleSound() {
                 var music = document.getElementById("background");//获取ID  
